@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- HTTPS Enforcement: Globally reject all non-HTTPS (cleartext) traffic -->
+    <!-- This ensures that if a feed or image request fails to use HTTPS, the OS will block the connection -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

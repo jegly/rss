@@ -1,0 +1,15 @@
+# Built files
+*.apk
+*.aar
+*.dex
+*.class
+build/
+app/build/
+.gradle/
+.idea/
+*.iml
+*.hprof
+local.properties
+.DS_Store
+/captures/
+.externalNativeBuild/
