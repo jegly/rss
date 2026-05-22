@@ -1,3 +1,3 @@
 # RSS Reader
 
-coming soon
+i will write a readme soon, in the time  being enjoy the app! 
