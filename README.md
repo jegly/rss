@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="screenshots/android_rss_pastel_banner.png" alt="RSS"/>
+    <img src="screenshots/android_rss_grayr.png" alt="RSS"/>
   </p>
 
 
