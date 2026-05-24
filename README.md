@@ -6,9 +6,15 @@
 
 **A private, security-hardened RSS reader for Android with a built-in sandboxed browser**
 
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.0-111111.svg?logo=kotlin&logoColor=white&color=bfff00)](https://kotlinlang.org) [![Android](https://img.shields.io/badge/Android-15%2B-111111.svg?logo=android&logoColor=white&color=bfff00)](https://developer.android.com) [![Version](https://img.shields.io/badge/Version-1.0-111111.svg?color=bfff00)](https://github.com/jegly/rss/releases) [![License](https://img.shields.io/badge/License-Apache%202.0-111111.svg?color=bfff00)](LICENSE) [![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-Material%203-111111.svg?logo=jetpackcompose&logoColor=white&color=bfff00)](https://developer.android.com/jetpack/compose)
+  [![Kotlin](https://img.shields.io/badge/Kotlin-2.0-cba6f7.svg?logo=kotlin&logoColor=cdd6f4&labelColor=1e1e2e)](https://kotlinlang.org)
+  [![Android](https://img.shields.io/badge/Android-15%2B-a6e3a1.svg?logo=android&logoColor=cdd6f4&labelColor=1e1e2e)](https://developer.android.com)
+  [![Version](https://img.shields.io/badge/Version-1.0-89b4fa.svg?labelColor=1e1e2e)](https://github.com/jegly/rss/releases)
+  [![License](https://img.shields.io/badge/License-Apache%202.0-fab387.svg?labelColor=1e1e2e)](LICENSE) [![Jetpack 
+  Compose](https://img.shields.io/badge/Jetpack%20Compose-Material%203-b4befe.svg?logo=jetpackcompose&logoColor=cdd6f4&labelColor=1e1e2e)](https://developer.android.com/jetpack/compose)
 
-[![Download APK](https://img.shields.io/badge/Download_APK-111111?style=for-the-badge&logo=android&logoColor=white&color=bfff00)](https://github.com/jegly/rss/releases/latest)
+  [![Download APK](https://img.shields.io/badge/Download_APK-94e2d5?style=for-the-badge&logo=android&logoColor=1e1e2e)](https://github.com/jegly/rss/releases/latest)
+
+
 
 [![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://www.buymeacoffee.com/jegly)
 
