@@ -12,9 +12,23 @@ If this project helped you, please ⭐️ star it. **Also try [OfflineLLM](https
 
 **📱 Screenshots**
 
-[![](screenshots/01_home_grid.png)](screenshots/01_home_grid.png) [![](screenshots/02_home_list_view_options.png)](screenshots/02_home_list_view_options.png) [![](screenshots/03_add_source.png)](screenshots/03_add_source.png) [![](screenshots/04_articles_list.png)](screenshots/04_articles_list.png)
-
-[![](screenshots/05_article_reader_webview.png)](screenshots/05_article_reader_webview.png) [![](screenshots/06_settings_security.png)](screenshots/06_settings_security.png) [![](screenshots/07_settings_appearance.png)](screenshots/07_settings_appearance.png) [![](screenshots/08_settings_about.png)](screenshots/08_settings_about.png)
+<table>
+  <tr>
+    <td><img src="screenshots/01_home_grid.png" width="220"/></td>
+    <td><img src="screenshots/02_home_list_view_options.png" width="220"/></td>
+    <td><img src="screenshots/03_add_source.png" width="220"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/04_articles_list.png" width="220"/></td>
+    <td><img src="screenshots/05_article_reader_webview.png" width="220"/></td>
+    <td><img src="screenshots/06_settings_security.png" width="220"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/07_settings_appearance.png" width="220"/></td>
+    <td><img src="screenshots/08_settings_about.png" width="220"/></td>
+    <td></td>
+  </tr>
+</table>
 
 ---
 
