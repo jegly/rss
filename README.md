@@ -59,6 +59,7 @@ If this project helped you, please ⭐️ star it. **Also try [OfflineLLM](https
 - **Themes** — System / Catppuccin Mocha (13 accent colours) / Dracula (7 accent colours)
 - **OPML** — import and export your full feed list
 - **Wi-Fi Only Sync** — never fetch feeds on mobile data
+- **Atom Feeds**
 
 ## Security
 
