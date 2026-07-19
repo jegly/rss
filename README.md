@@ -7,7 +7,7 @@
 **A private, security-hardened RSS reader for Android with a built-in sandboxed browser**
 
   [![Kotlin](https://img.shields.io/badge/Kotlin-2.0-cba6f7.svg?logo=kotlin&logoColor=cdd6f4&labelColor=1e1e2e)](https://kotlinlang.org)
-  [![Android](https://img.shields.io/badge/Android-15%2B-a6e3a1.svg?logo=android&logoColor=cdd6f4&labelColor=1e1e2e)](https://developer.android.com)
+  [![Android](https://img.shields.io/badge/Android-13%2B-a6e3a1.svg?logo=android&logoColor=cdd6f4&labelColor=1e1e2e)](https://developer.android.com)
   [![Version](https://img.shields.io/badge/Version-1.1-89b4fa.svg?labelColor=1e1e2e)](https://github.com/jegly/rss/releases)
   [![License](https://img.shields.io/badge/License-Apache%202.0-fab387.svg?labelColor=1e1e2e)](LICENSE) [![Jetpack 
   Compose](https://img.shields.io/badge/Jetpack%20Compose-Material%203-b4befe.svg?logo=jetpackcompose&logoColor=cdd6f4&labelColor=1e1e2e)](https://developer.android.com/jetpack/compose)
