@@ -5,9 +5,10 @@
     <application
         android:name=".SecureRSSApp"
         android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
         android:label="rss"
         android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SecureRSSApp"
         android:networkSecurityConfig="@xml/network_security_config">
@@ -15,6 +16,8 @@
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
+            android:taskAffinity=""
+            android:launchMode="singleInstance"
             android:theme="@style/Theme.SecureRSSApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

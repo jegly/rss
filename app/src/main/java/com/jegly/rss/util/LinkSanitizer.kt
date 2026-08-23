@@ -11,12 +11,18 @@ object LinkSanitizer {
     fun sanitize(url: String): String {
         try {
             val uri = Uri.parse(url)
-            if (uri.query == null) return url
+            // Enforce HTTPS for any URL opened in the browser.
+            val secureUri = if (uri.scheme.equals("http", ignoreCase = true)) {
+                uri.buildUpon().scheme("https").build()
+            } else {
+                uri
+            }
+            if (secureUri.query == null) return secureUri.toString()
 
-            val builder = uri.buildUpon().clearQuery()
-            uri.queryParameterNames.forEach { name ->
+            val builder = secureUri.buildUpon().clearQuery()
+            secureUri.queryParameterNames.forEach { name ->
                 if (!TRACKING_PARAMS.contains(name.lowercase())) {
-                    uri.getQueryParameters(name).forEach { value ->
+                    secureUri.getQueryParameters(name).forEach { value ->
                         builder.appendQueryParameter(name, value)
                     }
                 }

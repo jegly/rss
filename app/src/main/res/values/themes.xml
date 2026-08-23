@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.SecureRSSApp" parent="android:Theme.Material.NoActionBar">
-        <!-- Set the background to black to prevent the white flash during startup -->
         <item name="android:windowBackground">#000000</item>
         <item name="android:navigationBarColor">#000000</item>
         <item name="android:statusBarColor">#000000</item>
+        <!-- Kill the legacy activity preview window entirely -->
+        <item name="android:windowDisablePreview">true</item>
+        <!-- Suppress the system splash screen icon (API 31+) -->
+        <item name="android:windowSplashScreenBackground">#000000</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_blank</item>
+        <!-- Transparent so there is no visible circle even if the icon has any rendering artifact -->
+        <item name="android:windowSplashScreenIconBackgroundColor">#00000000</item>
     </style>
 </resources>
