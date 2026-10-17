@@ -73,8 +73,8 @@ dependencies {
 
     // Networking — Retrofit 3.0.0 requires OkHttp 4.12
     implementation("com.squareup.retrofit2:retrofit:3.0.0")
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation("com.squareup.okhttp3:okhttp-dnsoverhttps:4.12.0")
+    implementation("com.squareup.okhttp3:okhttp:5.5.0")
+    implementation("com.squareup.okhttp3:okhttp-dnsoverhttps:5.5.0")
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.59.2")
