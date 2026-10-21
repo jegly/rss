@@ -68,7 +68,7 @@ dependencies {
     implementation("androidx.room:room-runtime:2.8.5")
     implementation("androidx.room:room-ktx:2.8.5")
     "ksp"("androidx.room:room-compiler:2.8.5")
-    implementation("net.zetetic:sqlcipher-android:4.14.1@aar")
+    implementation("net.zetetic:sqlcipher-android:4.19.1@aar")
     implementation("androidx.sqlite:sqlite-ktx:2.6.2")
 
     // Networking — Retrofit 3.0.0 requires OkHttp 4.12
