@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         classpath("com.google.devtools.ksp:symbol-processing-gradle-plugin:2.3.12")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.59.2")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.60.1")
     }
 }
 
