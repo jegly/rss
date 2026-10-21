@@ -62,7 +62,7 @@ dependencies {
     // Security
     implementation("androidx.security:security-crypto:1.1.0")
     implementation("androidx.biometric:biometric:1.1.0")
-    implementation("com.google.crypto.tink:tink-android:1.19.0")
+    implementation("com.google.crypto.tink:tink-android:1.24.0")
 
     // Room & SQLCipher
     implementation("androidx.room:room-runtime:2.8.5")
