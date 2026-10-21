@@ -86,8 +86,8 @@ dependencies {
     implementation("sh.calvin.reorderable:reorderable:3.1.0")
 
     // Compose image loader. Routed through our hardened OkHttp (DoH, HTTPS, size caps).
-    implementation("io.coil-kt.coil3:coil-compose:3.0.4")
-    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
+    implementation("io.coil-kt.coil3:coil-compose:3.6.3")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.6.3")
 
     // Dominant-color extraction for per-feed accent colors.
     implementation("androidx.palette:palette-ktx:1.0.0")
