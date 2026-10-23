@@ -60,6 +60,15 @@ class SettingsViewModel @Inject constructor(
     private val _preloadImages = MutableStateFlow(encryptionManager.getBoolean("preload_images", true))
     val preloadImages: StateFlow<Boolean> = _preloadImages.asStateFlow()
 
+    // Open articles as plain text from the feed instead of loading the page in the WebView.
+    private val _textOnlyReader = MutableStateFlow(encryptionManager.getBoolean("text_only_reader", false))
+    val textOnlyReader: StateFlow<Boolean> = _textOnlyReader.asStateFlow()
+
+    fun setTextOnlyReader(enabled: Boolean) {
+        encryptionManager.saveBoolean("text_only_reader", enabled)
+        _textOnlyReader.value = enabled
+    }
+
     private val _screenshotProtection = MutableStateFlow(encryptionManager.getBoolean("screenshot_protection", true))
     val screenshotProtection: StateFlow<Boolean> = _screenshotProtection.asStateFlow()
 

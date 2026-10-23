@@ -12,12 +12,15 @@ import androidx.compose.material.icons.filled.BookmarkBorder
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.jegly.rss.presentation.article.TextArticleScreen
+import com.jegly.rss.presentation.settings.SettingsViewModel
 import com.jegly.rss.util.BrowserUtils
 import java.net.URLDecoder
 import java.net.URLEncoder
@@ -29,6 +32,7 @@ fun FeedDetailScreen(
     navController: NavController,
     url: String,
     feedTitle: String = "",
+    settingsViewModel: SettingsViewModel = hiltViewModel(),
     viewModel: FeedDetailViewModel = hiltViewModel()
 ) {
     val articles by viewModel.articles.collectAsState()
@@ -39,7 +43,34 @@ fun FeedDetailScreen(
     // Saveable so the scroll position is restored when returning from an article.
     val listState = rememberLazyListState()
 
+    val textOnlyReader by settingsViewModel.textOnlyReader.collectAsState()
+    // Link of the article open in the text-only reader; saveable so it survives a trip to the
+    // full page and back.
+    var readingLink by rememberSaveable { mutableStateOf<String?>(null) }
+
     LaunchedEffect(decodedUrl) { viewModel.fetchArticles(decodedUrl) }
+
+    fun openInWebView(link: String, title: String) {
+        val encodedUrl = URLEncoder.encode(link, StandardCharsets.UTF_8.toString())
+        val encodedTitle = URLEncoder.encode(title, StandardCharsets.UTF_8.toString())
+        val encodedFeedTitle = URLEncoder.encode(feedTitle, StandardCharsets.UTF_8.toString())
+        navController.navigate("article/$encodedUrl?title=$encodedTitle&feedTitle=$encodedFeedTitle")
+    }
+
+    val readingArticle = readingLink?.let { link -> articles.firstOrNull { it.link == link } }
+    if (readingArticle != null) {
+        TextArticleScreen(
+            title = readingArticle.title,
+            feedTitle = feedTitle,
+            pubDate = readingArticle.pubDate,
+            body = readingArticle.description,
+            isSaved = readingArticle.link in savedLinks,
+            onToggleSaved = { viewModel.toggleSaved(readingArticle, feedTitle) },
+            onOpenFullPage = { openInWebView(readingArticle.link, readingArticle.title) },
+            onBack = { readingLink = null }
+        )
+        return
+    }
 
     Scaffold(
         topBar = {
@@ -85,10 +116,12 @@ fun FeedDetailScreen(
                             .fillMaxWidth()
                             .padding(8.dp)
                             .clickable {
-                                val encodedUrl = URLEncoder.encode(article.link, StandardCharsets.UTF_8.toString())
-                                val encodedTitle = URLEncoder.encode(article.title, StandardCharsets.UTF_8.toString())
-                                val encodedFeedTitle = URLEncoder.encode(feedTitle, StandardCharsets.UTF_8.toString())
-                                navController.navigate("article/$encodedUrl?title=$encodedTitle&feedTitle=$encodedFeedTitle")
+                                // Feeds that ship no body text fall back to the full page.
+                                if (textOnlyReader && article.description.isNotBlank()) {
+                                    readingLink = article.link
+                                } else {
+                                    openInWebView(article.link, article.title)
+                                }
                             }
                     ) {
                         Row(

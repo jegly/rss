@@ -12,18 +12,52 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.jegly.rss.presentation.article.TextArticleScreen
+import com.jegly.rss.presentation.settings.SettingsViewModel
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SavedArticlesScreen(navController: NavController, viewModel: SavedArticlesViewModel = hiltViewModel()) {
+fun SavedArticlesScreen(
+    navController: NavController,
+    settingsViewModel: SettingsViewModel = hiltViewModel(),
+    viewModel: SavedArticlesViewModel = hiltViewModel()
+) {
     val savedArticles by viewModel.savedArticles.collectAsState()
+    val textOnlyReader by settingsViewModel.textOnlyReader.collectAsState()
+    var readingLink by rememberSaveable { mutableStateOf<String?>(null) }
+
+    fun openInWebView(link: String, title: String, feedTitle: String) {
+        val encodedUrl = URLEncoder.encode(link, StandardCharsets.UTF_8.toString())
+        val encodedTitle = URLEncoder.encode(title, StandardCharsets.UTF_8.toString())
+        val encodedFeedTitle = URLEncoder.encode(feedTitle, StandardCharsets.UTF_8.toString())
+        navController.navigate("article/$encodedUrl?title=$encodedTitle&feedTitle=$encodedFeedTitle")
+    }
+
+    // Unsaving from the reader removes the article from the list, which closes the reader too.
+    val readingArticle = readingLink?.let { link -> savedArticles.firstOrNull { it.link == link } }
+    if (readingArticle != null) {
+        TextArticleScreen(
+            title = readingArticle.title,
+            feedTitle = readingArticle.feedTitle,
+            pubDate = readingArticle.pubDate,
+            body = readingArticle.description,
+            isSaved = true,
+            onToggleSaved = { viewModel.unsave(readingArticle.link) },
+            onOpenFullPage = { openInWebView(readingArticle.link, readingArticle.title, readingArticle.feedTitle) },
+            onBack = { readingLink = null }
+        )
+        return
+    }
 
     Scaffold(
         topBar = {
@@ -62,10 +96,12 @@ fun SavedArticlesScreen(navController: NavController, viewModel: SavedArticlesVi
                             .fillMaxWidth()
                             .padding(8.dp)
                             .clickable {
-                                val encodedUrl = URLEncoder.encode(article.link, StandardCharsets.UTF_8.toString())
-                                val encodedTitle = URLEncoder.encode(article.title, StandardCharsets.UTF_8.toString())
-                                val encodedFeedTitle = URLEncoder.encode(article.feedTitle, StandardCharsets.UTF_8.toString())
-                                navController.navigate("article/$encodedUrl?title=$encodedTitle&feedTitle=$encodedFeedTitle")
+                                // Articles saved from the full-page reader have no body text.
+                                if (textOnlyReader && article.description.isNotBlank()) {
+                                    readingLink = article.link
+                                } else {
+                                    openInWebView(article.link, article.title, article.feedTitle)
+                                }
                             }
                     ) {
                         Row(

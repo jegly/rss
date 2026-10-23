@@ -16,7 +16,7 @@ class RssParser @Inject constructor() {
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false)
             parser.setInput(inputStream, null)
 
-            var title = ""; var link = ""; var description = ""; var pubDate = ""
+            var title = ""; var link = ""; var description = ""; var content = ""; var pubDate = ""
             var isInsideItem = false
 
             var eventType = parser.eventType
@@ -41,9 +41,15 @@ class RssParser @Inject constructor() {
                                         link = sanitize(parser.nextText(), MAX_LINK)
                                     }
                                 }
-                                // RSS <description>; Atom <summary>/<content>.
-                                "description", "summary" -> description = sanitize(parser.nextText(), MAX_DESCRIPTION)
-                                "content" -> if (description.isEmpty()) description = sanitize(parser.nextText(), MAX_DESCRIPTION)
+                                // RSS <description>; Atom <summary>.
+                                "description", "summary" -> description = sanitizeBody(parser.nextText())
+                                // Full article body: RSS <content:encoded> (namespaces are off, so the
+                                // prefix stays in the name); Atom <content>. Atom type="xhtml" holds child
+                                // elements, which nextText() can't read, so it's skipped.
+                                "content:encoded" -> content = sanitizeBody(parser.nextText())
+                                "content" -> if (!"xhtml".equals(parser.getAttributeValue(null, "type"), true)) {
+                                    content = sanitizeBody(parser.nextText())
+                                }
                                 // RSS <pubDate>; Atom <published>/<updated>.
                                 "pubdate", "published" -> pubDate = sanitize(parser.nextText(), MAX_DATE)
                                 "updated" -> if (pubDate.isEmpty()) pubDate = sanitize(parser.nextText(), MAX_DATE)
@@ -52,9 +58,10 @@ class RssParser @Inject constructor() {
                     }
                     XmlPullParser.END_TAG -> {
                         if (name.equals("item", true) || name.equals("entry", true)) {
-                            articles.add(Article(title, link, pubDate, description))
+                            // Prefer the full body so the text-only reader shows the whole article.
+                            articles.add(Article(title, link, pubDate, content.ifEmpty { description }))
                             isInsideItem = false
-                            title = ""; link = ""; description = ""; pubDate = ""
+                            title = ""; link = ""; description = ""; content = ""; pubDate = ""
                         }
                     }
                 }
@@ -74,6 +81,21 @@ class RssParser @Inject constructor() {
             .toString()
             .trim()
             .take(maxLen)
+    }
+
+    /**
+     * Like [sanitize] but keeps paragraph breaks (LEGACY mode puts a blank line between block
+     * elements) and drops the U+FFFC placeholders left where <img> tags were.
+     */
+    private fun sanitizeBody(input: String): String {
+        val clipped = if (input.length > MAX_DESCRIPTION * 2) input.substring(0, MAX_DESCRIPTION * 2) else input
+        return HtmlCompat.fromHtml(clipped, HtmlCompat.FROM_HTML_MODE_LEGACY)
+            .toString()
+            .replace("\uFFFC", "")
+            .replace(Regex("[ \\t]+\n"), "\n")
+            .replace(Regex("\n{3,}"), "\n\n")
+            .trim()
+            .take(MAX_DESCRIPTION)
     }
 
     private companion object {

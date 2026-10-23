@@ -22,7 +22,7 @@ fun NavGraph() {
     NavHost(navController = navController, startDestination = "home") {
         composable("home") { HomeScreen(navController, settingsViewModel = settingsViewModel) }
         composable("settings") { SettingsScreen(navController, viewModel = settingsViewModel) }
-        composable("saved") { SavedArticlesScreen(navController) }
+        composable("saved") { SavedArticlesScreen(navController, settingsViewModel = settingsViewModel) }
         composable(
             "feed_detail/{url}?title={title}",
             arguments = listOf(
@@ -32,7 +32,7 @@ fun NavGraph() {
         ) { backStackEntry ->
             val url = backStackEntry.arguments?.getString("url") ?: ""
             val title = backStackEntry.arguments?.getString("title") ?: ""
-            FeedDetailScreen(navController, url, feedTitle = title)
+            FeedDetailScreen(navController, url, feedTitle = title, settingsViewModel = settingsViewModel)
         }
         composable(
             "article/{url}?title={title}&feedTitle={feedTitle}",

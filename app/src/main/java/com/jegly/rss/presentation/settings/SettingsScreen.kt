@@ -63,6 +63,7 @@ fun SettingsScreen(
     val cardSizeMultiplier by viewModel.cardSizeMultiplier.collectAsState()
     val wifiOnlySync by viewModel.wifiOnlySync.collectAsState()
     val preloadImages by viewModel.preloadImages.collectAsState()
+    val textOnlyReader by viewModel.textOnlyReader.collectAsState()
     val screenshotProtection by viewModel.screenshotProtection.collectAsState()
     val syncFrequency by viewModel.syncFrequency.collectAsState()
     val dohProvider by viewModel.dohProvider.collectAsState()
@@ -194,6 +195,14 @@ fun SettingsScreen(
                     leadingContent = { Icon(Icons.Default.Wifi, null) },
                     trailingContent = {
                         Switch(checked = wifiOnlySync, onCheckedChange = { viewModel.setWifiOnlySync(it) })
+                    }
+                )
+                ListItem(
+                    headlineContent = { Text("Text-Only Reader") },
+                    supportingContent = { Text("Open articles as plain text from the feed instead of loading the full page. Uses far less data") },
+                    leadingContent = { Icon(Icons.Default.DataSaverOn, null) },
+                    trailingContent = {
+                        Switch(checked = textOnlyReader, onCheckedChange = { viewModel.setTextOnlyReader(it) })
                     }
                 )
                 ListItem(
