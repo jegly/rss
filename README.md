@@ -8,7 +8,7 @@
 
   [![Kotlin](https://img.shields.io/badge/Kotlin-2.0-cba6f7.svg?logo=kotlin&logoColor=cdd6f4&labelColor=1e1e2e)](https://kotlinlang.org)
   [![Android](https://img.shields.io/badge/Android-13%2B-a6e3a1.svg?logo=android&logoColor=cdd6f4&labelColor=1e1e2e)](https://developer.android.com)
-  [![Version](https://img.shields.io/badge/Version-1.1-89b4fa.svg?labelColor=1e1e2e)](https://github.com/jegly/rss/releases)
+  [![Version](https://img.shields.io/badge/Version-1.2.2-89b4fa.svg?labelColor=1e1e2e)](https://github.com/jegly/rss/releases)
   [![License](https://img.shields.io/badge/License-Apache%202.0-fab387.svg?labelColor=1e1e2e)](LICENSE) [![Jetpack 
   Compose](https://img.shields.io/badge/Jetpack%20Compose-Material%203-b4befe.svg?logo=jetpackcompose&logoColor=cdd6f4&labelColor=1e1e2e)](https://developer.android.com/jetpack/compose)
 
@@ -79,6 +79,27 @@ If this project helped you, please ⭐️ star it. **Also try [OfflineLLM](https
 3. Open the APK and tap Install
 
 Requires Android 15+.
+
+## Release signing
+
+Release APKs use hybrid signing (APK Signature Scheme v3.2): the original app key plus an EC P-384 key and an ML-DSA-87 post-quantum key. Android 17 and newer verify the hybrid block, where the ML-DSA-87 key is the signer; earlier Android versions verify the original key as before. The built-in APK signature check follows the same rule.
+
+| File | SHA-256 |
+| --- | --- |
+| `RSS-1.2.2-PQC-signed.apk` | `42a39f99a623a8d233214fc541197617948df0421ac533c4f68b354128f7c053` |
+
+Verify a download:
+
+```bash
+sha256sum RSS-1.2.2-PQC-signed.apk
+apksigner verify -v --print-certs RSS-1.2.2-PQC-signed.apk   # build-tools 37.0.0 on JDK 25 shows all three keys
+```
+
+Signing certificate SHA-256:
+
+- ML-DSA-87 (post-quantum): `5f99de5b3195753d4fe8ddabebd2fb27356b2109d6fbb2471fcbbdf21a9e76a6`
+- EC P-384 (hybrid classical): `fa8f4a07e6a4f2b7dc6e5ab31fc05592b1414ab9436d1e2e39b35ce3bb2e33a2`
+- Original key: `98d324d4106a368c62729a0a24d9ac9a6b47f8ac4c6585348531f0ee4eb6a04c`
 
 ## Build from Source
 
