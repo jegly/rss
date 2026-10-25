@@ -15,8 +15,8 @@ android {
         applicationId = "com.jegly.rss"
         minSdk = 33
         targetSdk = 37
-        versionCode=7
-        versionName="1.2.1"
+        versionCode=8
+        versionName="1.2.2"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -49,8 +49,8 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 
 dependencies {
     implementation("androidx.core:core-ktx:1.19.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.11.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.11.0")
     implementation("androidx.activity:activity-compose:1.13.0")
     implementation(platform("androidx.compose:compose-bom:2026.09.00"))
     implementation("androidx.compose.ui:ui")
@@ -69,12 +69,12 @@ dependencies {
     implementation("androidx.room:room-ktx:2.8.5")
     "ksp"("androidx.room:room-compiler:2.8.5")
     implementation("net.zetetic:sqlcipher-android:4.19.1@aar")
-    implementation("androidx.sqlite:sqlite-ktx:2.6.2")
+    implementation("androidx.sqlite:sqlite-ktx:2.7.1")
 
     // Networking — Retrofit 3.0.0 requires OkHttp 4.12
     implementation("com.squareup.retrofit2:retrofit:3.0.0")
-    implementation("com.squareup.okhttp3:okhttp:5.5.0")
-    implementation("com.squareup.okhttp3:okhttp-dnsoverhttps:5.5.0")
+    implementation("com.squareup.okhttp3:okhttp:5.5.1")
+    implementation("com.squareup.okhttp3:okhttp-dnsoverhttps:5.5.1")
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.60.1")
@@ -90,5 +90,5 @@ dependencies {
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.6.3")
 
     // Dominant-color extraction for per-feed accent colors.
-    implementation("androidx.palette:palette-ktx:1.0.0")
+    implementation("androidx.palette:palette-ktx:1.1.0")
 }
