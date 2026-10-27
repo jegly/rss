@@ -2,7 +2,7 @@
 // buildscript{} is the one Gradle mechanism with a single shared classpath —
 // no per-entry isolation like the plugins{} block has in Gradle 8.1+/9.x.
 buildscript {
-    val nettyVersion = "4.1.139.Final"
+    val nettyVersion = "4.2.19.Final"
     val bouncyCastleVersion = "1.86"
     dependencies {
         constraints {
