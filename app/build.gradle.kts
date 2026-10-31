@@ -15,8 +15,9 @@ android {
         applicationId = "com.jegly.rss"
         minSdk = 33
         targetSdk = 37
-        versionCode=8
-        versionName="1.2.2"
+        // CI release builds pass these; local builds use the defaults.
+        versionCode = providers.gradleProperty("appVersionCode").map(String::toInt).getOrElse(8)
+        versionName = providers.gradleProperty("appVersionName").getOrElse("1.2.2")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
