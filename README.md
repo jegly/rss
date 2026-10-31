@@ -8,7 +8,7 @@
 
   [![Kotlin](https://img.shields.io/badge/Kotlin-2.0-cba6f7.svg?logo=kotlin&logoColor=cdd6f4&labelColor=1e1e2e)](https://kotlinlang.org)
   [![Android](https://img.shields.io/badge/Android-13%2B-a6e3a1.svg?logo=android&logoColor=cdd6f4&labelColor=1e1e2e)](https://developer.android.com)
-  [![Version](https://img.shields.io/badge/Version-1.2.2-89b4fa.svg?labelColor=1e1e2e)](https://github.com/jegly/rss/releases)
+  [![Version](https://img.shields.io/badge/Version-1.2.3-89b4fa.svg?labelColor=1e1e2e)](https://github.com/jegly/rss/releases)
   [![License](https://img.shields.io/badge/License-Apache%202.0-fab387.svg?labelColor=1e1e2e)](LICENSE) [![Jetpack 
   Compose](https://img.shields.io/badge/Jetpack%20Compose-Material%203-b4befe.svg?logo=jetpackcompose&logoColor=cdd6f4&labelColor=1e1e2e)](https://developer.android.com/jetpack/compose)
 
@@ -86,13 +86,13 @@ Release APKs use hybrid signing (APK Signature Scheme v3.2): the original app ke
 
 | File | SHA-256 |
 | --- | --- |
-| `RSS-1.2.2-PQC-signed.apk` | `42a39f99a623a8d233214fc541197617948df0421ac533c4f68b354128f7c053` |
+| `rss-1.2.3-PQC-signed.apk` | `a53e83cd79199cfec2502f97abacfa5fffba238ed998fbb301d95bb49bb3f5fc` |
 
 Verify a download:
 
 ```bash
-sha256sum RSS-1.2.2-PQC-signed.apk
-apksigner verify -v --print-certs RSS-1.2.2-PQC-signed.apk   # build-tools 37.0.0 on JDK 25 shows all three keys
+sha256sum rss-1.2.3-PQC-signed.apk
+apksigner verify -v --print-certs rss-1.2.3-PQC-signed.apk   # build-tools 37.0.0 on JDK 25 shows all three keys
 ```
 
 Signing certificate SHA-256:
