@@ -29,7 +29,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.google.devtools.ksp:symbol-processing-gradle-plugin:2.3.13")
+        classpath("com.google.devtools.ksp:symbol-processing-gradle-plugin:2.3.14")
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.60.1")
     }
 }
