@@ -9,12 +9,12 @@ apply(plugin = "dagger.hilt.android.plugin")
 
 android {
     namespace = "com.jegly.rss"
-    compileSdk = 37
+    compileSdk = 37.2
 
     defaultConfig {
         applicationId = "com.jegly.rss"
         minSdk = 33
-        targetSdk = 37
+        targetSdk = 37.2
         // CI release builds pass these; local builds use the defaults.
         versionCode = providers.gradleProperty("appVersionCode").map(String::toInt).getOrElse(8)
         versionName = providers.gradleProperty("appVersionName").getOrElse("1.2.2")
